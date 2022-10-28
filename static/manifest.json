@@ -1,0 +1,47 @@
+{
+    "short_name": "adorade",
+    "name": "adorade",
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "adorade_512.jpg",
+        "type": "image/jpeg",
+        "sizes": "512x512"
+      }
+    ],
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#FFFFFF",
+    "shortcuts": [
+        {
+          "name": "Un homme m'a laissée passer !",
+          "short_name": "Homme ok",
+          "description": "Clique ici si un homme t'a laissé passer.",
+          "url": "/man/allow",
+          "icons": [{ "src": "/adorade_192.jpg", "sizes": "192x192" }]
+        },
+        {
+          "name": "Un homme ne m'a pas laissée passer !",
+          "short_name": "Homme ko",
+          "description": "Clique ici si un homme ne t'a pas laissé passer.",
+          "url": "/man/disallow",
+          "icons": [{ "src": "/adorade_192.jpg", "sizes": "192x192" }]
+        },
+        {
+          "name": "Une femmee m'a laissée passer !",
+          "short_name": "Femme ok",
+          "description": "Clique ici si une femme t'a laissé passer.",
+          "url": "/women/allow",
+          "icons": [{ "src": "/adorade_192.jpg", "sizes": "192x192" }]
+        },
+        {
+          "name": "Une femme ne m'a pas laissée passéer !",
+          "short_name": "Femme ko",
+          "description": "Clique ici si une femme ne t'a pas laissé passer.",
+          "url": "/women/disallow",
+          "icons": [{ "src": "/adorade_192.jpg", "sizes": "192x192" }]
+        }
+    ],
+    "description": "Determine what kind of people let you go out of your garage."
+}
