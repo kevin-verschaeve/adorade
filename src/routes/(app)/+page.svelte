@@ -1,8 +1,9 @@
 <script>
-	import { enhance } from '$app/forms';
+    import { enhance } from '$app/forms';
     import { db } from '$lib/firebase'
     import { collection, query, onSnapshot, where } from 'firebase/firestore'
-	import { onMount } from 'svelte';
+    import { onMount } from 'svelte';
+    import Toast from '$lib/component/Toast.svelte';
 
     export let form;
 
@@ -45,35 +46,27 @@
     <section>
         <h2>Qui a été adorade ce matin ?</h2>
         <form method="POST" use:enhance class="grid">
-            <div>
-                <button formaction="?/manAllowed">
-                    Un Homme
-                    <span class="badge">{count.man.allowed}</span>
-                </button>
-            </div>
-            <div>
-                <button formaction="?/womenAllowed" class="secondary">
-                    Une Femme
-                    <span class="badge secondary">{count.women.allowed}</span>
-                </button>
-            </div>
+            <button formaction="?/manAllowed">
+                Un Homme
+                <span class="badge">{count.man.allowed}</span>
+            </button>
+            <button formaction="?/womenAllowed" class="secondary">
+                Une Femme
+                <span class="badge secondary">{count.women.allowed}</span>
+            </button>
         </form>
     </section>
     <section class="no-margin-top">
         <h2>Qui n'a <strong>pas</strong> été adorade ce matin ?</h2>
         <form method="POST" use:enhance class="grid">
-            <div>
-                <button formaction="?/manDisallowed">
-                    Un Homme
-                    <span class="badge">{count.man.disallowed}</span>
-                </button>
-            </div>
-            <div>
-                <button formaction="?/womenDisallowed" class="secondary">
-                    Une Femme
-                    <span class="badge secondary">{count.women.disallowed}</span>
-                </button>
-            </div>
+            <button formaction="?/manDisallowed">
+                Un Homme
+                <span class="badge">{count.man.disallowed}</span>
+            </button>
+            <button formaction="?/womenDisallowed" class="secondary">
+                Une Femme
+                <span class="badge secondary">{count.women.disallowed}</span>
+            </button>
         </form>
     </section>
     <section>
@@ -84,15 +77,15 @@
 {#if form?.success}
     {#if 'man' === form.gender}
         {#if form.allowed}
-            <p>Wow il a été adorade ce monsieur !</p>
+            <Toast message="Wow il a été adorade ce monsieur !"/>
         {:else}
-            <p>Tfacon les hommes, c'est tous les mêmes !</p>
+            <Toast message="Tfacon les hommes, c'est tous les mêmes !" type="disallowed"/>
         {/if}
     {:else}
         {#if form.allowed}
-            <p>Wow elle a été adorade cette madame !</p>
+            <Toast message="Wow elle a été adorade cette madame !"/>
         {:else}
-            <p>Toutes des putes, sauf maman !</p>
+            <Toast message="Toutes des putes, sauf maman !" type="disallowed"/>
         {/if}
     {/if}
 {/if}
