@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from "svelte";
 
-
     export let message;
     export let timeout = 5;
     export let type = 'allowed';
@@ -13,6 +12,7 @@
 </script>
 
 {#if display}
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="toast {type}" on:click={() => {display = false}}>
     <h5>{message}</h5>
 </div>
@@ -27,6 +27,7 @@
 
     .toast {
         color: var(--color);
+        cursor: pointer;
         padding: 20px;
         border-radius: 20px;
         position: fixed;
@@ -40,7 +41,6 @@
     .toast.disallowed {
         background-color: #ad3838;
     }
-
 
     @media only screen and (max-width: 480px) {
         .toast {
