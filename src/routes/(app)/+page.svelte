@@ -41,19 +41,19 @@
 </script>
 
 <article style="text-align: center;">
-    <img src="logo.png" class="logo"/>
+    <img src="logo.png" class="logo" alt="Adorade"/>
     <section>
         <h2>Qui a été adorade ce matin ?</h2>
         <form method="POST" use:enhance class="grid">
             <div>
                 <button formaction="?/manAllowed">
-                    + Un Homme
-                    <span class="badge">{count.women.allowed}</span>
+                    Un Homme
+                    <span class="badge">{count.man.allowed}</span>
                 </button>
             </div>
             <div>
                 <button formaction="?/womenAllowed" class="secondary">
-                    + Une Femme
+                    Une Femme
                     <span class="badge secondary">{count.women.allowed}</span>
                 </button>
             </div>
@@ -64,13 +64,13 @@
         <form method="POST" use:enhance class="grid">
             <div>
                 <button formaction="?/manDisallowed">
-                    + Un Homme
+                    Un Homme
                     <span class="badge">{count.man.disallowed}</span>
                 </button>
             </div>
             <div>
                 <button formaction="?/womenDisallowed" class="secondary">
-                    + Une Femme
+                    Une Femme
                     <span class="badge secondary">{count.women.disallowed}</span>
                 </button>
             </div>
