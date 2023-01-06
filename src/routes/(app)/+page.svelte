@@ -46,12 +46,16 @@
         <h2>Qui a été adorade ce matin ?</h2>
         <form method="POST" use:enhance class="grid">
             <div>
-                <button formaction="?/manAllowed">+ Un Homme</button>
-                <p>{count.man.allowed}</p>
+                <button formaction="?/manAllowed">
+                    + Un Homme
+                    <span class="badge">{count.women.allowed}</span>
+                </button>
             </div>
             <div>
-                <button formaction="?/womenAllowed" class="secondary">+ Une Femme</button>
-                <p>{count.women.allowed}</p>
+                <button formaction="?/womenAllowed" class="secondary">
+                    + Une Femme
+                    <span class="badge secondary">{count.women.allowed}</span>
+                </button>
             </div>
         </form>
     </section>
@@ -59,12 +63,16 @@
         <h2>Qui n'a <strong>pas</strong> été adorade ce matin ?</h2>
         <form method="POST" use:enhance class="grid">
             <div>
-                <button formaction="?/manDisallowed">+ Un Homme</button>
-                <p>{count.man.disallowed}</p>
+                <button formaction="?/manDisallowed">
+                    + Un Homme
+                    <span class="badge">{count.man.disallowed}</span>
+                </button>
             </div>
             <div>
-                <button formaction="?/womenDisallowed" class="secondary">+ Une Femme</button>
-                <p>{count.women.disallowed}</p>
+                <button formaction="?/womenDisallowed" class="secondary">
+                    + Une Femme
+                    <span class="badge secondary">{count.women.disallowed}</span>
+                </button>
             </div>
         </form>
     </section>
@@ -85,3 +93,17 @@
         {/if}
     {/if}
 {/if}
+
+<style>
+    .badge {
+        background: white;
+        border-radius: 50%;
+        padding: 5px 10px;
+        color: var(--primary);
+        float: right;
+    }
+
+    .badge.secondary {
+        color: var(--secondary);
+    }
+</style>
