@@ -16,8 +16,8 @@
 </div>
 
 <div class="chart-container">
-<div use:highcharts={byMonthChart(data.global.byMonth, true)}></div>
-<div use:highcharts={byMonthChart(data.global.byMonth, false)}></div>
+  <div use:highcharts={byMonthChart(data.global.byMonth, true)}></div>
+  <div use:highcharts={byMonthChart(data.global.byMonth, false)}></div>
 </div>
 
 <h2>

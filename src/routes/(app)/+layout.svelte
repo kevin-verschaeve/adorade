@@ -1,5 +1,5 @@
 <script>
-    import '../../../node_modules/@picocss/pico/css/pico.min.css';
+    import '@picocss/pico/css/pico.min.css';
 </script>
 
 <main class="container">
