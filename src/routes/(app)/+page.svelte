@@ -40,17 +40,35 @@
     });
 </script>
 
-<h1>Qui a été adorade ce matin ?</h1>
-<form method="POST" use:enhance>
-    <button formaction="?/manAllowed">Un Homme {count.man.allowed}</button>
-    <button formaction="?/womenAllowed">Une Femme {count.women.allowed}</button>
-</form>
-
-<h2>Qui n'a PAS été adorade ce matin ?</h2>
-<form method="POST" use:enhance>
-    <button formaction="?/manDisallowed">Un Homme {count.man.disallowed}</button>
-    <button formaction="?/womenDisallowed">Une Femme {count.women.disallowed}</button>
-</form>
+<article style="text-align: center;">
+    <img src="logo.png" class="logo"/>
+    <section>
+        <h2>Qui a été adorade ce matin ?</h2>
+        <form method="POST" use:enhance class="grid">
+            <div>
+                <button formaction="?/manAllowed">+ Un Homme</button>
+                <p>{count.man.allowed}</p>
+            </div>
+            <div>
+                <button formaction="?/womenAllowed" class="secondary">+ Une Femme</button>
+                <p>{count.women.allowed}</p>
+            </div>
+        </form>
+    </section>
+    <section class="no-margin-top">
+        <h2>Qui n'a <strong>pas</strong> été adorade ce matin ?</h2>
+        <form method="POST" use:enhance class="grid">
+            <div>
+                <button formaction="?/manDisallowed">+ Un Homme</button>
+                <p>{count.man.disallowed}</p>
+            </div>
+            <div>
+                <button formaction="?/womenDisallowed" class="secondary">+ Une Femme</button>
+                <p>{count.women.disallowed}</p>
+            </div>
+        </form>
+    </section>
+</article>
 
 {#if form?.success}
     {#if 'man' === form.gender}

@@ -13,8 +13,11 @@
 <div class="chart-container">
   <div use:highcharts={genderChart(data.global.gender)}></div>
   <div use:highcharts={genderAndAllowChart(data.global.gender)}></div>
-  <div use:highcharts={byMonthChart(data.global.byMonth, true)}></div>
-  <div use:highcharts={byMonthChart(data.global.byMonth, false)}></div>
+</div>
+
+<div class="chart-container">
+<div use:highcharts={byMonthChart(data.global.byMonth, true)}></div>
+<div use:highcharts={byMonthChart(data.global.byMonth, false)}></div>
 </div>
 
 <h2>
