@@ -76,6 +76,9 @@
             </div>
         </form>
     </section>
+    <section>
+        <a href="/stats" class="secondary">Stats</a>
+    </section>
 </article>
 
 {#if form?.success}
