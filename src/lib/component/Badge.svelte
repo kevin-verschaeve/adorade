@@ -1,11 +1,12 @@
 <script>
 	import Loader from "./Loader.svelte";
 
-    export let data = null;
+    export let data;
     export let secondary = false;
+    export let loading = true;
 </script>
 
-{#if null === data}
+{#if loading}
     <Loader />
 {:else}
     <span class="badge" class:secondary>{data}</span>

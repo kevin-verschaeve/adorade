@@ -8,18 +8,31 @@
 
     export let form;
 
-    let manAllowedCount, manDisallowedCount,
-        womenAllowedCount, womenDisallowedCount;
+    let manAllowedCount = 0, manDisallowedCount  = 0,
+        womenAllowedCount = 0, womenDisallowedCount = 0;
+    let manLoading = true, womenLoading = true;
 
     onMount(async () => {
         onSnapshot(collection(db, 'adorade', 'man', 'data'), (querySnapshot) => {
-            manAllowedCount = querySnapshot.docs.filter(d => d.data().allowed === true).length;
-            manDisallowedCount = querySnapshot.docs.filter(d => d.data().allowed === false).length;
+            querySnapshot.docs.forEach((doc) => {
+                if (doc.data().allowed) {
+                    manAllowedCount++
+                } else {
+                    manDisallowedCount++;
+                }
+            });
+            manLoading = false;
         });
 
         onSnapshot(collection(db, 'adorade', 'women', 'data'), (querySnapshot) => {
-            womenAllowedCount = querySnapshot.docs.filter(d => d.data().allowed === true).length;
-            womenDisallowedCount = querySnapshot.docs.filter(d => d.data().allowed === false).length;
+            querySnapshot.docs.forEach((doc) => {
+                if (doc.data().allowed) {
+                    womenAllowedCount++
+                } else {
+                    womenDisallowedCount++;
+                }
+            });
+            womenLoading = false;
         });
     });
 </script>
@@ -31,11 +44,11 @@
         <form method="POST" use:enhance class="grid">
             <button formaction="?/manAllowed">
                 Un Homme
-                <Badge data={manAllowedCount}/>
+                <Badge data={manAllowedCount} loading={manLoading}/>
             </button>
             <button formaction="?/womenAllowed" class="secondary">
                 Une Femme
-                <Badge data={womenAllowedCount} secondary={true}/>
+                <Badge data={womenAllowedCount} secondary={true} loading={womenLoading}/>
             </button>
         </form>
     </section>
@@ -44,11 +57,11 @@
         <form method="POST" use:enhance class="grid">
             <button formaction="?/manDisallowed">
                 Un Homme
-                <Badge data={manDisallowedCount}/>
+                <Badge data={manDisallowedCount} loading={manLoading}/>
             </button>
             <button formaction="?/womenDisallowed" class="secondary">
                 Une Femme
-                <Badge data={womenDisallowedCount} secondary={true}/>
+                <Badge data={womenDisallowedCount} secondary={true} loading={womenLoading}/>
             </button>
         </form>
     </section>
