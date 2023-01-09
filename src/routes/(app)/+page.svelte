@@ -4,39 +4,22 @@
     import { collection, query, onSnapshot, where } from 'firebase/firestore'
     import { onMount } from 'svelte';
     import Toast from '$lib/component/Toast.svelte';
+	import Badge from '../../lib/component/Badge.svelte';
 
     export let form;
 
-    let manRef, womenRef;
-    let count = {
-        man: {
-            allowed: 0,
-            disallowed: 0,
-        }, 
-        women: {
-            allowed: 0,
-            disallowed: 0,
-        }
-    };
+    let manAllowedCount, manDisallowedCount,
+        womenAllowedCount, womenDisallowedCount;
 
     onMount(async () => {
-        manRef = collection(db, 'adorade', 'man', 'data');
-        womenRef = collection(db, 'adorade', 'women', 'data');
-
-        onSnapshot(query(manRef, where('allowed', '==', true)), (querySnapshot) => {
-            count.man.allowed = querySnapshot.docs.length;
+        onSnapshot(collection(db, 'adorade', 'man', 'data'), (querySnapshot) => {
+            manAllowedCount = querySnapshot.docs.filter(d => d.data().allowed === true).length;
+            manDisallowedCount = querySnapshot.docs.filter(d => d.data().allowed === false).length;
         });
 
-        onSnapshot(query(womenRef, where('allowed', '==', true)), (querySnapshot) => {
-            count.women.allowed = querySnapshot.docs.length;
-        });
-
-        onSnapshot(query(manRef, where('allowed', '==', false)), (querySnapshot) => {
-            count.man.disallowed = querySnapshot.docs.length;
-        });
-
-        onSnapshot(query(womenRef, where('allowed', '==', false)), (querySnapshot) => {
-            count.women.disallowed = querySnapshot.docs.length;
+        onSnapshot(collection(db, 'adorade', 'women', 'data'), (querySnapshot) => {
+            womenAllowedCount = querySnapshot.docs.filter(d => d.data().allowed === true).length;
+            womenDisallowedCount = querySnapshot.docs.filter(d => d.data().allowed === false).length;
         });
     });
 </script>
@@ -48,11 +31,11 @@
         <form method="POST" use:enhance class="grid">
             <button formaction="?/manAllowed">
                 Un Homme
-                <span class="badge">{count.man.allowed}</span>
+                <Badge data={manAllowedCount}/>
             </button>
             <button formaction="?/womenAllowed" class="secondary">
                 Une Femme
-                <span class="badge secondary">{count.women.allowed}</span>
+                <Badge data={womenAllowedCount} secondary={true}/>
             </button>
         </form>
     </section>
@@ -61,11 +44,11 @@
         <form method="POST" use:enhance class="grid">
             <button formaction="?/manDisallowed">
                 Un Homme
-                <span class="badge">{count.man.disallowed}</span>
+                <Badge data={manDisallowedCount}/>
             </button>
             <button formaction="?/womenDisallowed" class="secondary">
                 Une Femme
-                <span class="badge secondary">{count.women.disallowed}</span>
+                <Badge data={womenDisallowedCount} secondary={true}/>
             </button>
         </form>
     </section>
@@ -90,16 +73,3 @@
     {/if}
 {/if}
 
-<style>
-    .badge {
-        background: white;
-        border-radius: 50%;
-        padding: 5px 10px;
-        color: var(--primary);
-        float: right;
-    }
-
-    .badge.secondary {
-        color: var(--secondary);
-    }
-</style>
