@@ -29,7 +29,7 @@
         color: var(--color);
         cursor: pointer;
         padding: 20px;
-        border-radius: 20px;
+        border-radius: 10px;
         position: fixed;
         top: 50px;
         right: 50px;
@@ -37,9 +37,11 @@
 
     .toast.allowed {
         background-color: #3c965b;
+        box-shadow: 5px 5px 7px #29673e;
     }
     .toast.disallowed {
         background-color: #ad3838;
+        box-shadow: 5px 5px 10px #813030;
     }
 
     @media only screen and (max-width: 480px) {
