@@ -8,12 +8,27 @@
 
     export let form;
 
-    let manAllowedCount = 0, manDisallowedCount  = 0,
-        womenAllowedCount = 0, womenDisallowedCount = 0;
-    let manLoading = true, womenLoading = true;
+    let manAllowedCount, manDisallowedCount, manLoading,
+        womenAllowedCount, womenDisallowedCount, womenLoading;
+
+    const reset = (gender) => {
+        if (['all', 'man'].includes(gender)) {
+            manAllowedCount = 0;
+            manDisallowedCount = 0;
+            manLoading = true;
+        }
+
+        if (['all', 'women'].includes(gender)) {
+            womenAllowedCount = 0;
+            womenDisallowedCount = 0;
+            womenLoading = true;
+        }
+    }
 
     onMount(async () => {
+        reset('all');
         onSnapshot(collection(db, 'adorade', 'man', 'data'), (querySnapshot) => {
+            reset('man');
             querySnapshot.docs.forEach((doc) => {
                 if (doc.data().allowed) {
                     manAllowedCount++
@@ -25,6 +40,7 @@
         });
 
         onSnapshot(collection(db, 'adorade', 'women', 'data'), (querySnapshot) => {
+            reset('women');
             querySnapshot.docs.forEach((doc) => {
                 if (doc.data().allowed) {
                     womenAllowedCount++
