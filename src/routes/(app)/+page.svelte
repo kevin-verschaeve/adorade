@@ -86,19 +86,6 @@
     </section>
 </article>
 
-{#if form?.success}
-    {#if 'man' === form.gender}
-        {#if form.allowed}
-            <Toast message="Wow il a été adorade ce monsieur !"/>
-        {:else}
-            <Toast message="Tfacon les hommes, c'est tous les mêmes !" type="disallowed"/>
-        {/if}
-    {:else}
-        {#if form.allowed}
-            <Toast message="Wow elle a été adorade cette madame !"/>
-        {:else}
-            <Toast message="Toutes des putes, sauf maman !" type="disallowed"/>
-        {/if}
-    {/if}
+{#if form}
+    <Toast display={form} {...form}/>
 {/if}
-

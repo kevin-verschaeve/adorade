@@ -10,36 +10,32 @@ export const actions = {
     increment(collection(db, 'adorade', 'man', 'data'), true)
 
     return {
-      success: true,
-      gender: 'man',
       allowed: true,
+      message: "Wow il a été adorade ce monsieur !"
     };
   },
   manDisallowed: async (event) => {
     increment(collection(db, 'adorade', 'man', 'data'), false)
 
     return {
-      success: true,
-      gender: 'man',
       allowed: false,
+      message: "Tfacon les hommes, c'est tous les mêmes !",
     };
   },
   womenAllowed: async (event) => {
     increment(collection(db, 'adorade', 'women', 'data'), true)
 
     return {
-      success: true,
-      gender: 'women',
       allowed: true,
+      message: "Wow elle a été adorade cette madame !"
     };
   },
   womenDisallowed: async (event) => {
     increment(collection(db, 'adorade', 'women', 'data'), false)
 
     return {
-      success: true,
-      gender: 'women',
       allowed: false,
+      message: "Toutes des putes, sauf maman !",
     };
   },
 };

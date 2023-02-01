@@ -2,10 +2,11 @@
 	import { onMount } from "svelte";
 
     export let message;
-    export let timeout = 5;
-    export let type = 'allowed';
+    export let allowed;
 
-    let display = true;
+    export let timeout = 5;
+    export let display = true;
+
     onMount(() => {
         setTimeout(() => display = false, timeout * 1000);
     })
@@ -13,7 +14,7 @@
 
 {#if display}
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="toast {type}" on:click={() => {display = false}}>
+<div class="toast" class:allowed class:disallowed={!allowed} on:click={() => {display = false}}>
     <h5>{message}</h5>
 </div>
 {/if}
